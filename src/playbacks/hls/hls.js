@@ -250,6 +250,7 @@ export default class HLS extends HTML5VideoPlayback {
         case HLSJS.ErrorTypes.NETWORK_ERROR:
           Log.warn(`hlsjs: trying to recover from network error, evt ${evt}, data ${data} `)
           this._hls.startLoad()
+          this.trigger(Events.PLAYBACK_ERROR, `hlsjs: could not recover from network error, evt ${evt}, data ${data} `, this.name)
           break
         case HLSJS.ErrorTypes.MEDIA_ERROR:
           Log.warn(`hlsjs: trying to recover from media error, evt ${evt}, data ${data} `)
